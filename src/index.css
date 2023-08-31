@@ -18,6 +18,17 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100vh;
+  width: 100vh;
+}
+
+.section {
+  width: 100vw;
+}
+
 .btn {
   text-decoration: none;
   padding: 5px 5px;
@@ -42,9 +53,18 @@ input {
   font-size: 1.5rem;
 }
 
+.movies {
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 auto;
+}
+
 .movie-container {
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   height: 400px;
+
   aspect-ratio: 0.8;
   background: rgb(204, 204, 204);
 
@@ -57,13 +77,15 @@ input {
   flex: 7;
 
   overflow: none;
-  width: 100%;
-  height: 100%;
+  height: 70%;
+
+  aspect-ratio: 0.7
 }
 
 .info {
-  font-size: 2rem;
-  margin: 10px;
+  height: 30%;
+  font-size: 1.2rem;
+  margin: 20px;
   flex: 3;
   display: flex;
   flex-direction: column;
