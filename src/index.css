@@ -118,3 +118,31 @@ input {
   width: 100px;
   text-align: center;
 }
+
+.arrow {
+  /* padding: 10px; */
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border-radius: 50%;
+  background: #e08181;
+
+  box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.171);
+}
+
+.extra-info {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 1.2rem;
+  color: var(--color-tertiary);
+  letter-spacing: 0.4rem;
+  line-height: 2.3rem;
+  font-weight: bold;
+}

@@ -1,7 +1,8 @@
 import Hero from './PAGES/Hero';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import MoviePage from './PAGES/MoviePage';
+import MoviePage, { loader as idLoader } from './PAGES/MoviePage';
 import Movies, { loader as movieLoader } from './COMPONENTS/Movies';
+import Error from './COMPONENTS/Error';
 
 const router = createBrowserRouter([
   {
@@ -12,12 +13,15 @@ const router = createBrowserRouter([
         index: true,
         element: <Movies />,
         loader: movieLoader,
+        errorElement: <Error />,
       },
     ],
   },
   {
     path: '/movie/:id',
     element: <MoviePage />,
+    loader: idLoader,
+    errorElement: <Error />,
   },
 ]);
 
