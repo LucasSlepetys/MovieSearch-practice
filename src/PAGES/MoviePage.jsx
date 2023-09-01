@@ -1,18 +1,33 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 
-export const loader = async ({ params, request }) => {
-  const response =
-    await axios.get(`http://www.omdbapi.com/?apikey=d26fd309&i=${params.id}
+const searchId = (id) => {
+  return {
+    queryKey: ['id', id],
+    queryFn: async () => {
+      const response =
+        await axios.get(`http://www.omdbapi.com/?apikey=d26fd309&i=${id}
   `);
-
-  return { movie: response.data };
+      return { movie: response.data };
+    },
+  };
 };
 
+export const loader =
+  (queryClient) =>
+  async ({ params, request }) => {
+    await queryClient.ensureQueryData(searchId(params.id));
+    return params.id;
+  };
+
 const MoviePage = () => {
-  const { movie } = useLoaderData();
+  const id = useLoaderData();
+  console.log(id);
+  const { data } = useQuery(searchId(id));
+  const movie = data.movie;
 
   const navigation = useNavigation();
   const navigate = useNavigate();

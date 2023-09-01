@@ -3,6 +3,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MoviePage, { loader as idLoader } from './PAGES/MoviePage';
 import Movies, { loader as movieLoader } from './COMPONENTS/Movies';
 import Error from './COMPONENTS/Error';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -12,7 +16,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Movies />,
-        loader: movieLoader,
+        loader: movieLoader(queryClient),
         errorElement: <Error />,
       },
     ],
@@ -20,13 +24,18 @@ const router = createBrowserRouter([
   {
     path: '/movie/:id',
     element: <MoviePage />,
-    loader: idLoader,
+    loader: idLoader(queryClient),
     errorElement: <Error />,
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+    </QueryClientProvider>
+  );
 }
 
 export default App;
